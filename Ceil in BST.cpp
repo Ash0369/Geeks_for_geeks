@@ -1,7 +1,6 @@
 int findCeil(struct Node* root, int input) 
 {
-    
-    int ele=INT_MAX;
+    int ceil=0;
     while(root!=NULL)
     {
         if(root->data==input)
@@ -14,15 +13,9 @@ int findCeil(struct Node* root, int input)
         }
         else
         {
-            
-            if((root->data-input)<ele)
-            {
-                ele=root->data-input;
-            }
-            root=root->left;
-            
+            ceil=root->data;
+            root=root->left;   
         }
     }
-    return ele+input;
-    
+    return ceil;
 }
