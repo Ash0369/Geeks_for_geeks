@@ -35,4 +35,53 @@ class Solution
     }
 };
 
-//Method-2 
+//Method-2 in O(h) time complexity and O(1) space complexity
+
+Node* sucessor(Node* root,Node* x)
+{
+    if(root==NULL)
+    {
+        return NULL;
+    }
+    if(x->data==root->data)
+    {
+        if(root->right!=NULL)
+        {
+            Node* temp=root->right;
+            while(temp->left!=NULL)
+            {
+                temp=temp->left;
+            }
+            return temp;
+        }
+        return NULL;
+    }
+    else if(x->data>root->data)
+    {
+        Node* temp=sucessor(root->right,x);
+        if(temp==NULL)
+        {
+            return NULL;
+        }
+        return temp;
+    }
+    else if(x->data<root->data)
+    {
+        Node* temp=sucessor(root->left,x);
+        if(temp==NULL)
+        {
+            return root;
+        }
+        return temp;
+    }
+    return root;
+
+}
+class Solution
+{
+  public:
+    Node * inOrderSuccessor(Node *root, Node *x)
+    {
+        return sucessor(root,x);
+    }
+};
