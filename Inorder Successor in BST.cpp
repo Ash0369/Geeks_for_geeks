@@ -85,3 +85,34 @@ class Solution
         return sucessor(root,x);
     }
 };
+
+//Method-3 : O(n) Time Complexity and O(1) Space Complexity
+
+Node* ans=NULL;
+bool result=true;
+void sucessor(Node* root,Node* x)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    sucessor(root->left,x);
+    if((root->data>x->data) && result)
+    {
+        ans=root;
+        result=false;
+    }
+    sucessor(root->right,x);
+
+}
+class Solution
+{
+  public:
+    Node * inOrderSuccessor(Node *root, Node *x)
+    {
+        ans=NULL;
+        result=true;
+        sucessor(root,x);
+        return ans;
+    }
+};
