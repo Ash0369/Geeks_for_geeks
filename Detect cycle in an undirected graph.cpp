@@ -45,3 +45,47 @@ class Solution {
         return false;
     }
 };
+
+//Method-2:Using DFS Traversal :
+
+class Solution {
+  public:
+    bool detect_cycle(int node,int parent,vector<int>adj[],vector<int>&visited)
+    {
+        visited[node]=1;
+        for(auto x:adj[node])
+        {
+            if(!visited[x])
+            {
+               if(detect_cycle(x,node,adj,visited))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if(x!=parent)
+                {
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+    bool isCycle(int v, vector<int> adj[]) 
+    {
+        vector<int>visited(v+1,0);
+        for(int i=0;i<v;i++)
+        {
+            if(!visited[i])
+            {
+                if(detect_cycle(i,-1,adj,visited))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
