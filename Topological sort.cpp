@@ -35,3 +35,50 @@ class Solution
         return result;
 	}
 };
+
+//Method-2 : BFS(Khan's Algorthim)
+
+class Solution
+{
+	public:
+        void bfs(int node,vector<int>&indegree,vector<int>&result,queue<int>&q,vector<int>adj[])
+        {
+            result.push_back(node);
+            for(auto x:adj[node])
+            {
+                indegree[x]--;
+                if(indegree[x]==0)
+                {
+                    q.push(x);
+                }
+            }
+        }
+	vector<int> topoSort(int v, vector<int> adj[]) 
+	{
+	    vector<int>visited(v,0);
+        vector<int>result;
+        queue<int>q;
+        vector<int>indegree(v,0);
+        for(int i=0;i<v;i++)
+        {
+            for(auto x:adj[i])
+            {
+                indegree[x]++;
+            }
+        }
+        for(int i=0;i<v;i++)
+        {
+            if(indegree[i]==0)
+            {
+                q.push(i);
+            }
+        }
+        while(!q.empty())
+        {
+            int node=q.front();
+            q.pop();
+            bfs(node,indegree,result,q,adj);
+        }
+        return result;
+	}
+};
