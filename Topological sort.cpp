@@ -34,7 +34,7 @@ class Solution
            }
            return result;
     }
-}    
+};    
 
 //Method-2 : BFS(Khan's Algorthim)
 
