@@ -116,3 +116,59 @@ class Solution
         return res;
 	} 
 };
+
+//Method-3 : 
+
+class Solution
+{
+  public:
+	int minDifference(int arr[], int n)  
+    { 
+        if(n==1)
+        {
+            return arr[0];
+        }
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum=sum+arr[i];
+        }
+        vector<bool>dp(sum+1,false);
+        vector<bool>curr(sum+1,false);
+
+        dp[0]=true;
+        curr[0]=true;
+        
+        if(arr[0]<=sum)
+        {
+            dp[arr[0]]=true;
+        }
+        int res=INT_MAX;
+        
+        for(int i=1;i<n;i++)
+        {
+            for(int j=1;j<=sum;j++)
+            {
+                bool pick=false;
+                if(j>=arr[i])
+                {
+                    pick=dp[j-arr[i]];
+                }
+                bool not_pick=dp[j];
+                curr[j]=pick|not_pick;
+            }
+            dp=curr;
+        }
+        for(int k=1;k<=(sum/2);k++)
+        {
+            int diff=INT_MAX;
+            if(dp[k]==true)
+            {
+                diff=abs(sum-k-k);
+            }
+            res=min(res,diff);
+        }
+        
+        return res;
+	} 
+};
