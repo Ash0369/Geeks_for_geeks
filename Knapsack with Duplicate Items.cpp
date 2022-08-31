@@ -101,3 +101,34 @@ public:
         return dp[w];
     }
 };
+
+//Method-4: 
+
+class Solution
+{
+public:
+    int knapSack(int n, int w, int val[], int wt[])
+    {
+        
+        vector<int>dp(w+1,0);
+        for(int j=0;j<=w;j++)
+        {
+            dp[j]=(j/wt[0])*val[0];
+        }
+        
+        for(int i=1;i<n;i++)
+        {
+            for(int j=0;j<=w;j++)
+            {
+                int not_pick=0+dp[j];
+                int pick=0;
+                if(j>=wt[i])
+                {
+                    pick=val[i]+dp[j-wt[i]];
+                }
+                dp[j]=max(pick,not_pick);
+            }
+        }
+        return dp[w];
+    }
+};
