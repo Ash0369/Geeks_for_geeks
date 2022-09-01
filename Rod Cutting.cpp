@@ -1,3 +1,5 @@
+//Method-1 :
+
 int price_cal(int price[],int n,int index,int right,vector<vector<int>>&vec)
 {
     if(index==0)
@@ -23,5 +25,36 @@ class Solution
     {
         vector<vector<int>>vec(n+1,vector<int>(n+1,-1));
         return price_cal(price,n,n,n,vec);
+    }
+};
+
+
+//Method-2 : 
+
+class Solution
+{
+  public:
+    int cutRod(int price[], int n) 
+    {  
+        vector<vector<int>>vec(n+1,vector<int>(n+1,0));
+        for(int j=1;j<=n;j++)
+        {
+            vec[0][j]=price[j-1];
+        }
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=0;j<=n;j++)
+            {
+                int cut=INT_MIN;
+                if(j>i)
+                {
+                    cut=price[j-i-1]+vec[i-1][i];
+                }
+                int not_cut=vec[i-1][j];
+                vec[i][j]=max(cut,not_cut);
+            }
+        }
+        
+        return vec[n][n];
     }
 };
