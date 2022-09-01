@@ -1,4 +1,4 @@
-//Method-1 :
+//Method-1 : Breaking Recursivelly
 
 int price_cal(int price[],int n,int index,int right,vector<vector<int>>&vec)
 {
@@ -29,7 +29,7 @@ class Solution
 };
 
 
-//Method-2 : 
+//Method-2 : Breaking by tabulation
 
 class Solution
 {
@@ -56,5 +56,39 @@ class Solution
         }
         
         return vec[n][n];
+    }
+};
+
+
+//Method-3 : Breaking by space Optamization
+
+class Solution
+{
+  public:
+    int cutRod(int price[], int n) 
+    {  
+        vector<int>vec(n+1,0);
+        vector<int>prev(n+1,0);
+        for(int j=1;j<=n;j++)
+        {
+            vec[j]=price[j-1];
+            prev[j]=price[j-1];
+        }
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=0;j<=n;j++)
+            {
+                int cut=INT_MIN;
+                if(j>i)
+                {
+                    cut=price[j-i-1]+vec[i];
+                }
+                int not_cut=vec[j];
+                prev[j]=max(cut,not_cut);
+            }
+            vec=prev;
+        }
+        
+        return vec[n];
     }
 };
