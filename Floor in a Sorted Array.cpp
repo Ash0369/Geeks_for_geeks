@@ -23,7 +23,7 @@ class Solution
 //Method-2 : Binary Search
 
 
-nt binary_search(vector<long long>&v, long long n, long long x,int l,int r)
+int binary_search(vector<long long>&v, long long n, long long x,int l,int r)
 {
     if(l>r)
     {
