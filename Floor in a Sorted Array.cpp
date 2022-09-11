@@ -21,3 +21,31 @@ class Solution
 };
 
 //Method-2 : Binary Search
+
+
+nt binary_search(vector<long long>&v, long long n, long long x,int l,int r)
+{
+    if(l>r)
+    {
+        return r;
+    }
+    int index=(l+r)/2;
+    if(v[index]==x)
+    {
+        return index;
+    }
+    if(v[index]>x)
+    {
+        return binary_search(v,n,x,l,index-1);
+    }
+    return binary_search(v,n,x,index+1,r);
+}
+class Solution
+{
+  public:
+    int findFloor(vector<long long> v, long long n, long long x)
+    {
+        int a= binary_search(v,n,x,0,n-1);
+        return a;
+    }
+};
