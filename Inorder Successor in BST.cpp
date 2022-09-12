@@ -116,3 +116,53 @@ class Solution
         return ans;
     }
 };
+
+
+//Method-4 : 
+
+Node *inorder_suceess(Node *root,Node *x)
+{
+    if(root==NULL)
+    {
+        return root;
+    }
+    
+    if(root==x)
+    {
+        if(root->right==NULL)
+        {
+            return root;
+        }
+       
+        Node *temp=root->right;
+        while(temp->left!=NULL)
+        {
+            temp=temp->left;
+        }
+        return temp;
+    }
+    Node *l=inorder_suceess(root->left,x);
+    if(l!=NULL && l!=x)
+    {
+        return l;
+    }
+    else if(l==x)
+    {
+        return root;
+    }
+    return inorder_suceess(root->right,x);
+}
+class Solution
+{
+  public:
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+    Node *inOrderSuccessor(Node *root, Node *x)
+    {
+        Node *temp=inorder_suceess(root,x);
+        if(temp==x)
+        {
+            return NULL;
+        }
+        return temp;
+    }
+};
