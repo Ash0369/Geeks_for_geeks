@@ -55,8 +55,6 @@ class Solution
 
 class Solution
 {
-
-
 	public:
 	int minCoins(int vec[], int m, int v) 
 	{ 
@@ -65,8 +63,6 @@ class Solution
 	   {
 	       dp[m][j]=INT_MIN;
 	   }
-	   
-	   
 	   
 	   for(int index=m-1;index>=0;index--)
 	   {
@@ -93,12 +89,10 @@ class Solution
                }
 	       }
 	   }
-	   
 	   if(dp[0][v]<=0)
 	   {
 	       return -1;
 	   }
 	   return dp[0][v];
-	} 
-	  
+	}  
 };
