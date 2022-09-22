@@ -1,3 +1,5 @@
+//Method-1 : 
+
 int coins(int vec[],int target,int index,int m,vector<vector<int>>&dp)
 {
     if(index>=m || target<0)
@@ -45,6 +47,58 @@ class Solution
 	    
 	    return ans;
 	    
+	} 
+	  
+};
+
+//Method-2 : 
+
+class Solution
+{
+
+
+	public:
+	int minCoins(int vec[], int m, int v) 
+	{ 
+	    vector<vector<int>>dp(m+1,vector<int>(v+1,0));
+	   for(int j=0;j<=v;j++)
+	   {
+	       dp[m][j]=INT_MIN;
+	   }
+	   
+	   
+	   
+	   for(int index=m-1;index>=0;index--)
+	   {
+	       for(int target=1;target<=v;target++)
+	       {
+               int a=-1;
+               if(target>=vec[index])
+               {
+                   a=1+dp[index][target-vec[index]];
+               }
+	           
+               int b=dp[index+1][target];
+               if(a<0)
+               {
+                   dp[index][target]=b;
+               }
+               else if(b<0)
+               {
+                   dp[index][target]=a;
+               }
+               else
+               {
+                   dp[index][target]=min(a,b);
+               }
+	       }
+	   }
+	   
+	   if(dp[0][v]<=0)
+	   {
+	       return -1;
+	   }
+	   return dp[0][v];
 	} 
 	  
 };
