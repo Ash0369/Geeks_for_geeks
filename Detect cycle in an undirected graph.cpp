@@ -89,3 +89,45 @@ class Solution {
         return false;
     }
 };
+
+
+//Method- : Alternate Method of BFS
+
+class Solution 
+{
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(int V, vector<int> adj[]) 
+    {
+        queue<int>q;
+        int n=V;
+        vector<int>vis(n+1,-1);
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i]==-1)
+            {
+                vis[i]=1;
+                q.push(i);
+                while(!q.empty())
+                {
+                    int y=q.front();
+                    q.pop();
+                    for(auto x:adj[y])
+                    {
+                        if(vis[x]!=-1 && vis[y]!=x)
+                        {
+                            return true;
+                        }
+                        if(vis[x]!=-1)
+                        {
+                            continue;
+                        }
+                        q.push(x);
+                        vis[x]=y;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
