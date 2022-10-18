@@ -1,3 +1,6 @@
+//Method-1 : BFS
+
+
 #define mp(a,b) make_pair(a,b)
 class Solution 
 {
@@ -44,6 +47,69 @@ class Solution
                         }
                     }
                     st.insert(v);
+                }
+            }
+        }
+        
+        return st.size();
+    }
+};
+
+
+//Method-2 : BFS
+
+
+#define mp(a,b) make_pair(a,b)
+
+void dfs(int x,int y,int fixedx,int fixedy,vector<pair<int,int>>&vec,vector<vector<bool>>&vis,vector<vector<int>>& grid)
+{
+    int n=grid.size();
+    int m=grid[0].size();
+    vec.push_back({fixedx-x,fixedy-y});
+    
+    vis[x][y]=true;
+    
+     vector<int>dx={-1,0,1,0};
+     vector<int>dy={0,1,0,-1};
+     
+     for(int j=0;j<4;j++)
+     {
+         int nx=x+dx[j];
+         int ny=y+dy[j];
+         
+         if(nx>=0 && nx<n && ny>=0 && ny<m)
+         {
+             if(vis[nx][ny]==false && grid[nx][ny]==1)
+             {
+                 dfs(nx,ny,fixedx,fixedy,vec,vis,grid);
+             }
+         }
+     }
+}
+class Solution 
+{
+  public:
+    int countDistinctIslands(vector<vector<int>>& grid) 
+    {
+        int n=grid.size();
+        int m=grid[0].size();
+        
+       
+        
+        vector<vector<bool>>vis(n,vector<bool>(m,false));
+
+        set<vector<pair<int,int>>>st;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]==1 && vis[i][j]==false)
+                {
+                   
+                    vector<pair<int,int>>vec;
+                    
+                    dfs(i,j,i,j,vec,vis,grid);
+                    st.insert(vec);
                 }
             }
         }
