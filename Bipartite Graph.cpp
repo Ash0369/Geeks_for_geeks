@@ -44,3 +44,54 @@ public:
 	}
 
 };
+
+
+//Method- : DFS
+
+
+bool dfs(int node,int intial,vector<int>adj[],vector<int>&color)
+{
+    if(color[node]!=-1)
+    {
+        if(color[node]==intial)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    color[node]=!intial;
+    for(auto x:adj[node])
+    {
+        if(dfs(x,color[node],adj,color)==false)
+        {
+            return false;
+        }
+    }
+    return true;
+    
+}
+class Solution 
+{
+public:
+	bool isBipartite(int v, vector<int>adj[])
+	{
+	    vector<int>color(v,-1);
+	    
+	    for(int i=0;i<v;i++)
+	    {
+	        if(color[i]==-1)
+	        {
+	            if(dfs(i,0,adj,color)==false)
+	            {
+	                return false;
+	            }
+	        }
+	    }
+	    
+	    return true;
+	}
+
+};
