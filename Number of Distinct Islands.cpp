@@ -56,7 +56,7 @@ class Solution
 };
 
 
-//Method-2 : BFS
+//Method-2 : DFS
 
 
 #define mp(a,b) make_pair(a,b)
