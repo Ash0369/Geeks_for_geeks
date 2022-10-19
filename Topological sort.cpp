@@ -82,3 +82,39 @@ class Solution
         return result;
 	}
 };
+
+
+//Method-3 : DFS withut stack
+
+
+void dfs(int node,vector<int>adj[],vector<bool>&visited,vector<int>&ans)
+{
+    visited[node]=true;
+    for(auto x:adj[node])
+    {
+        if(visited[x]==false)
+        {
+            dfs(x,adj,visited,ans);
+        }
+    }
+    ans.push_back(node);
+}
+class Solution
+{
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int v, vector<int> adj[]) 
+	{
+	    vector<bool>visited(v,false);
+	    vector<int>ans;
+	    for(int i=0;i<v;i++)
+	    {
+	        if(visited[i]==false)
+	        {
+	            dfs(i,adj,visited,ans);
+	        }
+	    }
+	    reverse(ans.begin(),ans.end());
+	    return ans;
+	}
+};
