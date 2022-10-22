@@ -147,3 +147,54 @@ class Solution
 	    return true;
     }
 };
+
+
+//Method-4 : DFS Modified
+
+bool dfs(int node,vector<bool>&vis, vector<bool>&pvis,vector<int>adj[])
+{
+    vis[node]=true;
+    pvis[node]=true;
+    
+    for(auto x:adj[node])
+    {
+        if(vis[x]==true && pvis[x]==true)
+        {
+            return true;
+        }
+        else if(vis[x]==false)
+        {
+            vis[x]=true;
+            pvis[x]=true;
+            if(dfs(x,vis,pvis,adj)==true)
+            {
+                return true;
+            }
+            pvis[x]=false;
+        }
+    }
+    pvis[node]=false;
+    return false;
+}
+class Solution 
+{
+  public:
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int v, vector<int> adj[]) 
+    {
+        vector<bool>vis(v+1,false);
+        vector<bool>pvis(v+1,false);
+        for(int i=0;i<v;i++)
+        {
+            if(vis[i]==false)
+            {
+                if(dfs(i,vis,pvis,adj)==true)
+                {
+                    return true;
+                }
+                
+            }
+        }
+        return false;
+    }
+};
