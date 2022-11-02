@@ -1,13 +1,14 @@
 class Solution 
 {
 public:
-    int wordLadderLength(string beginWord, string endWord, vector<string>& wordList) 
+    int wordladderLength(string beginWord, string endWord, vector<string>& wordList) 
     {
         queue<pair<string,int>>q;
         q.push({beginWord,1});
         set<string>st;
         for(auto x:wordList)
             st.insert(x);
+        st.erase(beginWord);
         while(!q.empty())
         {
             auto node=q.front();
@@ -16,7 +17,7 @@ public:
             int pos=node.second;
             if(s==endWord)
                 return pos;
-            st.erase(s);
+            
             
             for(int j=0;j<s.length();j++)
             {
@@ -28,6 +29,7 @@ public:
                     if(st.find(temp)!=st.end())
                     {
                         q.push({temp,pos+1});
+                        st.erase(temp);
                     }
                 }
             }
