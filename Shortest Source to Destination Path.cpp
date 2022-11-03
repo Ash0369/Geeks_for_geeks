@@ -25,7 +25,10 @@ class Solution
             int dit=node.first;
             int x1=node.second.first;
             int y1=node.second.second;
-            
+            if(x1==x && y1==y)
+            {
+                break;
+            }
             int prev=distance[x1][y1];
             
             for(int i=0;i<4;i++)
