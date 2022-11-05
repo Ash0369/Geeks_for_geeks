@@ -13,15 +13,16 @@ class Solution
 	        {
 	            for(int col=0;col<n;col++)
 	            {
+	                if(row==i || col==i)
+	                {
+	                    continue;
+	                }
+	                
 	                //how to arrive from row--> col , row->i->col
 	                
 	                ll int costa=matrix[row][i];
 	                ll int costb=matrix[i][col];
-	                if(matrix[row][i]==-1)
-	                {
-	                    continue;
-	                }
-	                if(matrix[i][col]==-1)
+	                if(matrix[row][i]==-1 || matrix[i][col]==-1)
 	                {
 	                    continue;
 	                }
