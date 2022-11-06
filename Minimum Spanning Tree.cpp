@@ -58,60 +58,43 @@ class Solution
     }
 };
 
-//Method-2 : Using Priority Queue (Test cases are faulty according to striver)
+//Method-2 : Using Priority Queue 
 
 class Solution
 {
 	public:
+	//Function to find sum of weights of edges of the Minimum Spanning Tree.
     int spanningTree(int v, vector<vector<int>> adj[])
     {
-        vector<int>distance(v,INT_MAX);
-        vector<int>parent(v,-1);
-        vector<bool>mst(v,false);
+         int sum=0;
+         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+         
+         pq.push({0,0});//Edgewt,node
+         
+         vector<bool>dp(v,false);
+         
+         while(!pq.empty())
+         {
+             auto node=pq.top();
+             pq.pop();
+             int pos=node.second;
+             int edge=node.first;
 
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-
-        distance[0]=0;
-        parent[0]=-1;
-
-        pq.push(make_pair(0,0));
-
-        for(int i=0;i<v-1;i++) 
-        {
-            //Find element with minimum key value
-
-            int node=pq.top().second;
-            pq.pop();
-            mst[node]=true;
-
-            //we have node as our minimum key value
-
-            for(auto x:adj[node])
-            {
-                if(mst[x[0]]==true)
-                {
-                    continue;
-                }
-                if(x[0]==parent[node])
-                {
-                    continue;
-                }
-
-                if(x[1]>distance[x[0]])
-                {
-                    continue;
-                }
-
-                parent[x[0]]=node;
-                distance[x[0]]=x[1];
-                pq.push(make_pair(distance[x[0]],x[0]));
-            }
-        }
-        int sum=0;
-        for(auto x:distance)
-        {
-            sum=sum+x;
-        }
-        return sum;
+             if(dp[pos]==true)
+             {
+                 continue;
+             }
+             sum+=edge;
+             dp[pos]=true;
+             for(auto x:adj[pos])
+             {
+                 if(dp[x[0]]==false)//Not visited
+                 {
+                     pq.push({x[1],x[0]});
+                 }
+             }
+            
+         }
+         return sum;
     }
 };
