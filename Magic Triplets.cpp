@@ -61,8 +61,6 @@ class Solution
 	       
 	       ans=ans+(small*large);
 	    }
-	    
-	   
 	    return ans;
 	}
 };
