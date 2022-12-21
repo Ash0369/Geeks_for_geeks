@@ -15,11 +15,13 @@ class Solution
 public:
     Node* sortList(Node* head)
     {
-        Node *neg=new Node;
-        Node *pos=new Node;
         
-        Node *poshead=pos;
-        Node *neghead=neg;
+        
+        Node *poshead=new Node;
+        Node *neghead=new Node;
+        
+        Node *neg=neghead;
+        Node *pos=poshead;
         
         while(head!=NULL)
         {
