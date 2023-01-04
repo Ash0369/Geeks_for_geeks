@@ -13,7 +13,7 @@ int profit(int index, vector<vector<int>>&intervals,int last,vector<vector<int>>
     int pick=0;
     int not_pick=0;
    
-    if(last==-1 || (intervals[index][0]>=intervals[last][1] && intervals[index][0]>intervals[last][0]))
+    if(last==-1 || (intervals[index][0]>=intervals[last][1]))
     {
         pick=intervals[index][2]+profit(index+1,intervals,index,dp);
     }
