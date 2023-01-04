@@ -83,3 +83,43 @@ class Solution
         return dp[0][0];
     }
 };
+
+
+//Method-3 : 
+
+bool cmp(vector<int>&vec1,vector<int>&vec2)
+{
+    if(vec1[0]<vec2[0])
+    {
+        return true;
+    }
+    return false;
+}
+class Solution 
+{
+  public:
+    int maximum_profit(int n, vector<vector<int>> &intervals) 
+    {
+        sort(intervals.begin(),intervals.end(),cmp);
+        
+        //dp[i] --> Max profit we can get till ith interval and we are picking ith interval
+     
+        vector<int>dp(n+1,0);
+        dp[0]=intervals[0][2];
+        for(int i=1;i<n;i++)
+        {
+            dp[i]=intervals[i][2];
+            int mx=0;
+            for(int j=0;j<i;j++)
+            {
+                if(intervals[j][1]<=intervals[i][0])
+                {
+                    mx=max(mx,dp[j]);
+                }
+            }
+            dp[i]+=mx;
+        }
+        
+        return *max_element(dp.begin(),dp.end());
+    }
+};
