@@ -1,3 +1,5 @@
+//Method-1 : 
+
 #define ll long long
 
 //last=0 --> Red
@@ -39,5 +41,39 @@ public:
         int n=N;
         vector<vector<ll int>>dp(n+1,vector<ll int>(4,-1));
         return paint(n,r,g,b,0,0,dp);
+    }
+};
+
+
+//Method-2 : 
+
+#define ll long long
+
+//last=0 --> Red
+//last=1 --> Green
+//last=2 --> Blue
+
+class Solution
+{   
+public:
+    long long int distinctColoring(int N, int r[], int g[], int b[])
+    {
+        int n=N;
+        vector<vector<ll int>>dp(n+1,vector<ll int>(3,-1));
+        dp[0][0]=r[0];
+        dp[0][1]=g[0];
+        dp[0][2]=b[0];
+        
+        for(int i=1;i<n;i++)
+        {
+            dp[i][0]=min(dp[i-1][1]+r[i],dp[i-1][2]+r[i]);
+            
+            dp[i][1]=min(dp[i-1][0]+g[i],dp[i-1][2]+g[i]);
+            
+            dp[i][2]=min(dp[i-1][0]+b[i],dp[i-1][1]+b[i]);
+    
+        }
+       
+        return min(dp[n-1][0],min(dp[n-1][1],dp[n-1][2]));
     }
 };
