@@ -1,3 +1,5 @@
+//Method-1 : 
+
 bool check(int mid,vector<int>&p,string s)
 {
     int n=p.size();
@@ -38,6 +40,29 @@ class Solution
             }
         }
         
+        return ans;
+    }
+};
+
+
+//Method-2 : 
+
+class Solution 
+{
+  public:
+    int getMinimumDays(int N,string S, vector<int> &P) 
+    {
+        int ans=0;
+        string s=S;
+        int n=N;
+        for(int i=0;i<n-1;i++)
+        {
+            while(s[i]!='?' && s[i]==s[i+1])
+            {
+                s[P[ans]]='?';
+                ans++;
+            }
+        }
         return ans;
     }
 };
