@@ -1,3 +1,5 @@
+//Method-1 : 
+
 class Solution
 {   
 public:
@@ -42,5 +44,21 @@ public:
             }
         }
         return cost;
+    }
+};
+
+
+//Method-2 : 
+
+class Solution
+{   
+public:
+    int minIteration(int N, int M, int x, int y)
+    {
+        int n=N;
+        int m=M;
+        int left=max(n-x,x-1);
+        int right=max(m-y,y-1);
+        return left+right;
     }
 };
