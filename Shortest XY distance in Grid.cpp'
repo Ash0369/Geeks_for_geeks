@@ -1,0 +1,59 @@
+class Solution 
+{
+  public:
+    int shortestXYDist(vector<vector<char>> grid, int N, int M) 
+    {
+        queue<pair<int,int>>q;
+        int n=N;
+        int m=M;
+        vector<vector<int>>dp(n,vector<int>(m,false));
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]=='X')
+                {
+                    dp[i][j]=true;
+                    q.push({i,j});
+                }
+            }
+        }
+        int ans=0;
+        
+        int dx[4]={-1,0,1,0};
+        int dy[4]={0,1,0,-1};
+        int curr=0;
+        while(!q.empty())
+        {
+            int sz=q.size();
+            curr++;
+            while(sz--)
+            {
+                auto node=q.front();
+                q.pop();
+                for(int i=0;i<4;i++)
+                {
+                    
+                    int nx=node.first+dx[i];
+                    int ny=node.second+dy[i];
+                    if(nx>=0 && nx<n && ny>=0 && ny<m)
+                    {
+                        if(dp[nx][ny]==false)
+                        {
+                            dp[nx][ny]=true;
+                            q.push({nx,ny});
+                            if(grid[nx][ny]=='Y')
+                            {
+                                
+                                return curr;
+                            }
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+        return 0;
+    }
+};
