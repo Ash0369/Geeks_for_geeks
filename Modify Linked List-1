@@ -1,0 +1,37 @@
+void dfs(Node *slow,Node *&fast,int mid,int curr)
+{
+    if(curr<mid)
+    {
+        dfs(slow->next,fast,mid,curr+1);
+    }
+    slow->data=fast->data-slow->data;
+    fast->data=(-1*slow->data)+fast->data;
+    fast=fast->next;
+}
+class Solution
+{
+    public:
+    struct Node* modifyTheList(struct Node *head)
+    {
+        int len=0;
+        Node *node=head;
+        while(node!=NULL)
+        {
+            node=node->next;
+            len++;
+        }
+        int mid=len/2;
+        int req=mid;
+        if(len%2!=0)
+        {
+            req++;
+        }
+        Node *fast=head;
+        while(req--)
+        {
+            fast=fast->next;
+        }
+        dfs(head,fast,mid,1);
+        return head;
+    }
+};
