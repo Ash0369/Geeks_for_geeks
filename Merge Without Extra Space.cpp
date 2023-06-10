@@ -1,4 +1,4 @@
-void merge(long long arr1[], long long arr2[], int n, int m) 
+void merge(long long arr1[],long long arr2[], int n, int m) 
 { 
     int i=n-1;
     int j=0;
