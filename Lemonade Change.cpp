@@ -1,7 +1,7 @@
 class Solution 
 {
   public:
-    bool lemonadeChange(int N, vector<int> &bills) 
+    bool lemonadeChange(int N,vector<int> &bills) 
     {
         int n=N;
         int five=0;
