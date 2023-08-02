@@ -3,8 +3,7 @@ class Solution
 public:
 	int TotalPairs(vector<int>&nums, int x, int y)
 	{
-	    //3 5 7  7 7 7 9 9
-	    //1 2 4 4  10 11 12 12 12 13 15 
+
 	    int cnt=0;
 	    sort(nums.begin(),nums.end());
 	    int n=nums.size();
