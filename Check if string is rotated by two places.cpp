@@ -35,5 +35,4 @@ class Solution
         s.push_back(str1[1]);
         return s==str2;
     }
-
 };
